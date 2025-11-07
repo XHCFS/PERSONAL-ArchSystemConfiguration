@@ -1,0 +1,4 @@
+# GOATED CONFIG. GOATED CONFIG. HYPRLAND DWN AND .... :) nord
+
+
+![Uploading 20251107-143544.png…]()
