@@ -1,0 +1,2 @@
+set last-dir-path "$LF_LAST_DIR_PATH"
+map . set hidden!

@@ -1,0 +1,9 @@
+color "type=HEADINGS_ODD fg=GREEN bg=BLACK"
+color "type=HEADINGS fg=GREEN bg=BLACK"
+color "type=CELL_SELECTION fg=BLACK bg=GREEN"
+
+color "type=CELL_FORMAT fg=BLACK bg=GREEN"
+color "type=WELCOME fg=WHITE bg=DEFAULT_COLOR"
+color "type=CELL_SELECTION_SC fg=BLACK bg=GREEN"
+color "type=MODE fg=RED bg=DEFAULT_COLOR"
+

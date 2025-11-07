@@ -1,0 +1,132 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": 0,
+
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "memory",
+    "cpu",
+    "network",
+    "backlight",
+    "pulseaudio",
+    "battery",
+    "clock"
+  ],
+
+  "tray": {
+    "icon-size": 24,
+    "spacing": 10
+  },
+
+  "hyprland/window": {
+    "format": "{}",
+    "rewrite": {
+      "(\\d\\. )?(.*) - Chromium": "<span font='JetBrainsMono Nerd Font' color='#4285F4'>󰈹</span>  $2 ",
+      "nvim (.*)": "<span font='JetBrainsMono Nerd Font' color='#57A143'>󰘧</span>  $1",
+      "nvim": "<span font='JetBrainsMono Nerd Font' color='#57A143'>󰘧  Neovim</span> ",
+      "ranger(.*)": "<span font='JetBrainsMono Nerd Font' color='#ffffff'>󰤆</span>  $1",
+      "Search(.*)": "<span font='JetBrainsMono Nerd Font' color='#a855f7'>󰍉</span>  Search$1"
+    },
+    "separate-outputs": false
+  },
+
+  "battery": {
+    "format": "<span font='JetBrainsMono Nerd Font 13'>{icon}</span> {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁹"],
+    "format-time": "{H}h{M}m",
+    "format-charging": "<span font='JetBrainsMono Nerd Font'>󰂄</span> <span font='JetBrainsMono Nerd Font 13'>{icon}</span> {capacity}%-{time}",
+    "format-full": "<span font='JetBrainsMono Nerd Font'>󰂄</span> <span font='JetBrainsMono Nerd Font 13'>{icon}</span>",
+    "interval": 1,
+    "states": {
+      "warning": 25,
+      "critical": 13
+    },
+    "tooltip": true
+  },
+
+  "hyprland/submap": {
+    "format": " {}",
+    "max-length": 8,
+    "tooltip": true
+  },
+
+  "network": {
+    "format-wifi": "<span font='JetBrainsMono Nerd Font 12'>󰤨</span> {essid} ({signalStrength}%)",
+    "format-ethernet": "<span font='JetBrainsMono Nerd Font'>󰈁</span> {ifname}: {ipaddr}/{cidr}",
+    "format-disconnected": "<span font='JetBrainsMono Nerd Font'>󰈂</span> disconnected",
+    "tooltip": false
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "-99": "",
+      "active": "",
+      "default": "",
+      "tooltip": false,
+      "on-click": ""
+    }
+  },
+
+  "temperature": {
+    "format": "<span font='JetBrainsMono Nerd Font'>{icon}</span> {temperatureC}°C",
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format-icons": ["󰔏", "󰔐", "󰔑"]
+  },
+
+  "memory": {
+    "format": "<span font='JetBrainsMono Nerd Font 13'>󰘚</span> {used:0.1f}GB / {total:0.1f}GB",
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": "<span font='JetBrainsMono Nerd Font 14'>󰍛</span> {usage}%",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{volume}% {icon}<span font='JetBrainsMono Nerd Font'></span>",
+    "format-muted": "<span font='Font Awesome 7 Free Solid'></span>",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol"
+  },
+
+  "clock": {
+    "format": "{:%d %B %H:%M}",
+    "interval": 60,
+    "tooltip": false,
+    "tooltip-format": "{:%d %B %H:%M}"
+  },
+
+  "backlight": {
+    "format": "<span font='JetBrainsMono Nerd Font'>󰃟</span> {percent}%",
+    "tooltip": false,
+    "device": "intel_backlight"
+  }
+}
+

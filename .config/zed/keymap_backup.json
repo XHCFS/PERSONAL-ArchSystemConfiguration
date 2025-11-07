@@ -1,0 +1,27 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette
+// .
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock", // File explorer toggle
+      "space s f": "file_finder::Toggle", // File finder
+      "space s g": "search::ToggleProjectSearch", // Project-wide search
+      "space j": "pane::ActivatePrevItem", // Previous tab
+      "space k": "pane::ActivateNextItem", // Next tab
+      "alt v": "editor::Paste" // Paste
+    }
+  },
+  {
+    "context": "Editor && vim_operator == g && !VimWaiting",
+    "bindings": {
+      "d": "editor::GoToDefinition" // After pressing g and r (you may drop r)
+    }
+  }
+]

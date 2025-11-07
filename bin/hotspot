@@ -1,0 +1,3 @@
+nmcli connection delete "Saif A34"
+sudo nmcli dev wifi list
+sudo nmcli dev wifi connect "Saif A34" password "gentlemen"

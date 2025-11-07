@@ -1,0 +1,110 @@
+/* ... your existing Waybar CSS ... */
+
+/* Tooltip styling */
+tooltip {
+  background-color: #2E3440; /* Background color matching your modules */
+  color: #E5E9F0; /* Foreground color */
+  border-radius: 10px; /* Rounded corners like your modules */
+  padding: 8px 16px; /* Adjust padding as needed */
+  font-size: 16px; /* Match your Waybar font size */
+  font-family: "Jetbrains Mono", "FontAwesome", monospace; /* Match your Waybar font */
+  border: none; /* Ensure no border */
+  box-shadow: none; /* Remove any default box shadow */
+  text-shadow: none;
+}
+
+tooltip label {
+  color: #E5E9F0; /* Ensure label text color matches foreground */
+  padding: 8px 12px; /* Adjust padding as needed */
+  background-color: transparent; /* Make label background transparent */
+}
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#waybar {
+  background: rgba(0, 0, 0, 0); /* Transparent background */
+  color: #E5E9F0; /* Foreground color */
+  font-size: 16px;
+  font-family: "Jetbrains Mono", "FontAwesome" ,monospace; /* Change to monospace for better font rendering */
+}
+
+/* Workspace buttons */
+#workspaces button {
+  color: #E5E9F0; /* Foreground color */
+  background-color: #2E3440; /* Background color for workspaces */
+}
+
+#workspaces button.active {
+  color: #E5E9F0; /* Foreground color */
+}
+
+#workspaces button:hover {
+
+    box-shadow:none;
+    text-shadow:none;
+    background:none;
+    transition: none;
+}
+
+/* Styling for individual modules */
+#custom-powermenu,
+#cpu,
+#temperature,
+#memory,
+#clock,
+#window,
+#pulseaudio,
+#custom-updates,
+#network,
+#battery,
+#backlight,
+#workspaces,
+#scratchpad {
+  padding: 2px 12px ;
+  color: #E5E9F0; /* Foreground color */
+  background-color: #2E3440; /* Background color for these modules */
+  border-radius: 10px;
+  margin-top: 4px;
+  margin-left: 4px;
+
+  margin-right: 0px;
+}
+
+/* Styling for clock and updates modules */
+#clock,
+#custom-updates {
+  margin-right:5px;
+}
+
+
+#workspaces{
+  padding-top:2px;
+  margin-left:5px;
+  padding-left:8px;
+  padding-right:8px
+}
+
+
+#battery span{
+  font-size: 2px; /* or whatever size you want */
+}
+/* Workspace buttons */
+#workspaces button {
+  color: #E5E9F0; /* Foreground color */
+  background-color: #2E3440; /* Background color for workspaces */
+  padding-left:4px;
+  padding-right:4px;
+}
+
+
+#workspaces button.active {
+  color: #E5E9F0; /* Foreground color */
+  padding-left:4px;
+  padding-right:4px;
+}

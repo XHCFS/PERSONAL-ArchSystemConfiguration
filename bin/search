@@ -1,0 +1,1 @@
+fd . /media -t f -H -d 3 2>/dev/null | fuzzel --dmenu -w 120 | xargs -d '\n' -I {} sh -c 'xdg-open "{}" &'
