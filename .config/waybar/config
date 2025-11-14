@@ -101,12 +101,12 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-bluetooth": "{volume}% {icon}<span font='JetBrainsMono Nerd Font'></span>",
-    "format-muted": "<span font='Font Awesome 7 Free Solid'></span>",
+    "format-bluetooth": "{icon}  {volume}%",
+    "format-muted": "<span font='JetBrainsMono Nerd Font'></span>",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "headset": "󰋋",
       "phone": "",
       "portable": "",
       "car": "",
