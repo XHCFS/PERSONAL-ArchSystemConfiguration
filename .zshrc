@@ -1,12 +1,11 @@
 unsetopt PROMPT_SP
 # ==========================================
-# 0. INSTANT TMUX START (MUST BE TOP)
+# 0. INSTANT TMUX START (FIXED)
 # ==========================================
-# Executes tmux immediately to avoid double-loading zsh config.
 if [ -z "$TMUX" ]; then
     if command -v tmux &> /dev/null; then
-        # Create unique session based on time to avoid mirroring
-        exec tmux new-session -s "tmux_$(date +%s)"
+        # Use $$ (Current PID) to ensure every session is unique
+        exec tmux new-session -s "tmux_$$"
     fi
 fi
 
