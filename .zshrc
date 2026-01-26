@@ -94,17 +94,32 @@ acceptandswallow() {
 zle -N acceptandswallow
 bindkey '^X^m' acceptandswallow
 
-# LF Directory Switcher (Ctrl-O)
+# ==========================================
+# LF DIRECTORY SWITCHER
+# ==========================================
+
+# 1. The Wrapper Function
+# This creates a temp file, runs lf, and cds to the last dir on exit.
 lfcd () {
     tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
+    # 'command lf' ensures we run the actual binary, not the alias below
+    command lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+        if [ -d "$dir" ] && [ "$dir" != "$(pwd)" ]; then
+            cd "$dir"
+        fi
     fi
 }
-bindkey -s '^[o' 'lfcd\n'
+
+# 2. The Command
+# Now, when you type 'lf', it will automatically change directory when you quit.
+alias lf="lfcd"
+
+# 3. The Shortcut (Ctrl-o)
+# Press Ctrl+o to instantly launch lf.
+bindkey -s '^o' 'lfcd\n'
 
 # ==========================================
 # 6. SEARCH & NAVIGATION
