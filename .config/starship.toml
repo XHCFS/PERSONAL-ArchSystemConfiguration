@@ -1,0 +1,32 @@
+# 6. DISABLE LANGUAGES
+[package]
+disabled = true
+[python]
+disabled = true
+[c]
+disabled = true
+[cmake]
+disabled = true
+[cobol]
+disabled = true
+[golang]     # <--- FIXED (was [go])
+disabled = true
+[java]
+disabled = true
+[lua]
+disabled = true
+[nodejs]
+disabled = true
+[php]
+disabled = true
+[rust]
+disabled = true
+[git_status]
+style = "bold red"
+# Show a simple [*] if anything is changed, otherwise show nothing
+format = '[$all_status$ahead_behind]($style) '
+modified = "*"
+untracked = "*"
+staged = "+"
+deleted = "x"
+renamed = ">"
