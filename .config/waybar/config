@@ -67,10 +67,21 @@
   },
 
   "network": {
-    "format-wifi": "<span font='JetBrainsMono Nerd Font 12'>󰤨</span> {essid} ({signalStrength}%)",
-    "format-ethernet": "<span font='JetBrainsMono Nerd Font'>󰈁</span> {ifname}: {ipaddr}/{cidr}",
-    "format-disconnected": "<span font='JetBrainsMono Nerd Font'>󰈂</span> disconnected",
-    "tooltip": false
+      // "interface": "wlan0", // (Optional) Force a specific interface
+      "interval": 2, // Update every 2 seconds for real-time bandwidth info
+      "format-wifi": "{icon} {essid}",
+      "format-ethernet": "󰈁  {ifname}",
+      "format-disconnected": "󰈂  Disconnected",
+      "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"], // Signal strength icons (0% to 100%)
+      
+      // Detailed Tooltip
+      "tooltip-format": "{ifname} via {gwaddr}\nIP: {ipaddr}\n {bandwidthDownBytes}   {bandwidthUpBytes}",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%)\nFrequency: {frequency}GHz\nIP: {ipaddr}\n {bandwidthDownBytes}   {bandwidthUpBytes}",
+      "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}\n {bandwidthDownBytes}   {bandwidthUpBytes}",
+      "tooltip-format-disconnected": "Disconnected",
+      
+      // Optional: Open network manager on click
+      "on-click": "nm-connection-editor" 
   },
 
   "hyprland/workspaces": {
@@ -112,20 +123,29 @@
   },
 
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{icon}  {volume}%",
-    "format-muted": "<span font='JetBrainsMono Nerd Font'></span>",
-    "format-icons": {
-      "headphone": "󰋋",
-      "hands-free": "󰋋",
-      "headset": "󰋋",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", ""]
-    },
-    "scroll-step": 1,
-    "on-click": "pavucontrol"
+      "scroll-step": 5, // 1% is too slow; 5% is standard
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon}  {volume}%",
+      "format-bluetooth-muted": " ",
+      "format-muted": "", // Clean muted icon (no percentage needed)
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      
+      // Icons for different device types
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""] // Silent -> Medium -> Loud
+      },
+      
+      // The Tooltip: Shows the full device name
+      "tooltip-format": "{desc}\nVolume: {volume}%",
+      
+      "on-click": "pavucontrol"
   },
 
   "clock": {
