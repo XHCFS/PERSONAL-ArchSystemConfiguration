@@ -35,17 +35,29 @@
   },
 
   "battery": {
-    "format": "<span font='JetBrainsMono Nerd Font 13'>{icon}</span> {capacity}%",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁹"],
-    "format-time": "{H}h{M}m",
-    "format-charging": "<span font='JetBrainsMono Nerd Font'>󰂄</span> <span font='JetBrainsMono Nerd Font 13'>{icon}</span> {capacity}%-{time}",
-    "format-full": "<span font='JetBrainsMono Nerd Font'>󰂄</span> <span font='JetBrainsMono Nerd Font 13'>{icon}</span>",
-    "interval": 1,
-    "states": {
-      "warning": 25,
-      "critical": 13
-    },
-    "tooltip": true
+      "interval": 60,
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      // "Format" is the default view: Icon + Percent
+      "format": "{icon} {capacity}%",
+      
+      // "Format-icons" uses the full 10-step range for smoother updates
+      "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      
+      // shows the time remaining when you click on the module
+      "format-alt": "{time} {icon}",
+      
+      // "Format-charging" shows a distinct lightning bolt + percent
+      "format-charging": "󰂄 {capacity}%",
+      
+      // "Format-plugged" handles when battery is full but still plugged in
+      "format-plugged": "󰂄 {capacity}%",
+      
+      // Detailed tooltip with health info
+      "tooltip-format": "{timeTo}\nPower: {power}W\nHealth: {health}%\nCycles: {cycles}",
+      "tooltip-format-charging": "{timeTo}\nPower: {power}W\nHealth: {health}%\nCycles: {cycles}"
   },
 
   "hyprland/submap": {
