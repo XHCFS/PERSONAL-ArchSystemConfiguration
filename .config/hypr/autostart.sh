@@ -3,5 +3,5 @@ hyprpaper &
 waybar &
 hypridle &
 gammastep -c ~/.config/gammastep/gammastep.conf -v &
-copyq &
+copyq --start-server &
 fcitx5 &
