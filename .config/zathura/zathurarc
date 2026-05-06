@@ -1,38 +1,37 @@
-# Base16 Nord
-# Author: arcticicestudio
+# Gruvbox Dark (matched to foot)
 set selection-clipboard clipboard
 
-set default-bg                  "#2E3440"
-set default-fg                  "#3B4252"
+set default-bg                  "#282828"
+set default-fg                  "#f2e5bc"
 
-set statusbar-fg                "#D8DEE9"
-set statusbar-bg                "#434C5E"
+set statusbar-fg                "#f2e5bc"
+set statusbar-bg                "#3c3836"
 
-set inputbar-bg                 "#2E3440"
-set inputbar-fg                 "#8FBCBB"
+set inputbar-bg                 "#282828"
+set inputbar-fg                 "#83a598"
 
-set notification-bg             "#2E3440"
-set notification-fg             "#8FBCBB"
+set notification-bg             "#282828"
+set notification-fg             "#83a598"
 
-set notification-error-bg       "#2E3440"
-set notification-error-fg       "#BF616A"
+set notification-error-bg       "#282828"
+set notification-error-fg       "#fb4934"
 
-set notification-warning-bg     "#2E3440"
-set notification-warning-fg     "#BF616A"
+set notification-warning-bg     "#282828"
+set notification-warning-fg     "#fabd2f"
 
-set completion-bg               "#3B4252"
-set completion-fg               "#81A1C1"
+set completion-bg               "#3c3836"
+set completion-fg               "#83a598"
 
-set index-bg                    "#2E3440" # Background
-set index-fg                    "#D8DEE9" # Foreground
-set index-active-fg             "#D8DEE9" # Current Line
-set index-active-bg             "#3B4252" # Foreground
+set index-bg                    "#282828" # Background
+set index-fg                    "#f2e5bc" # Foreground
+set index-active-fg             "#f2e5bc" # Current line text
+set index-active-bg             "#504945" # Current line background
 
-set completion-highlight-fg     "#8FBCBB"
-set completion-highlight-bg     "#81A1C1"
+set completion-highlight-fg     "#b8bb26"
+set completion-highlight-bg     "#3c3836"
 
-set recolor-lightcolor          "#2E3440"
-set recolor-darkcolor           "#ECEFF4"
+set recolor-lightcolor          "#282828"
+set recolor-darkcolor           "#f2e5bc"
 
 set recolor                     "false"
 set recolor-keephue             "false"

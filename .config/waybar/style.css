@@ -1,20 +1,17 @@
-/* ... your existing Waybar CSS ... */
-
-/* Tooltip styling */
 tooltip {
-  background-color: #3b4252; /* Background color matching your modules */
-  color: #E5E9F0; /* Foreground color */
+  background-color: #282828; /* Background color matching foot */
+  color: #f2e5bc; /* Foreground color */
   border-radius: 10px; /* Rounded corners like your modules */
   padding: 8px 16px; /* Adjust padding as needed */
   font-size: 16px; /* Match your Waybar font size */
   font-family: "Jetbrains Mono", "FontAwesome", monospace; /* Match your Waybar font */
-  border: none; /* Ensure no border */
+  border: 1px solid #3c3836;
   box-shadow: none; /* Remove any default box shadow */
   text-shadow: none;
 }
 
 tooltip label {
-  color: #E5E9F0; /* Ensure label text color matches foreground */
+  color: #f2e5bc; /* Ensure label text color matches foreground */
   padding: 8px 12px; /* Adjust padding as needed */
   background-color: transparent; /* Make label background transparent */
 }
@@ -29,19 +26,19 @@ tooltip label {
 
 #waybar {
   background: rgba(0, 0, 0, 0); /* Transparent background */
-  color: #E5E9F0; /* Foreground color */
+  color: #f2e5bc; /* Foreground color */
   font-size: 16px;
   font-family: "Jetbrains Mono", "FontAwesome" ,monospace; /* Change to monospace for better font rendering */
 }
 
 /* Workspace buttons */
 #workspaces button {
-  color: #E5E9F0; /* Foreground color */
-  background-color: #2E3440; /* Background color for workspaces */
+  color: #f2e5bc; /* Foreground color */
+  background-color: #282828; /* Background color for workspaces */
 }
 
 #workspaces button.active {
-  color: #E5E9F0; /* Foreground color */
+  color: #f2e5bc; /* Foreground color */
 }
 
 #workspaces button:hover {
@@ -67,8 +64,8 @@ tooltip label {
 #workspaces,
 #scratchpad {
   padding: 2px 12px ;
-  color: #E5E9F0; /* Foreground color */
-  background-color: #2E3440; /* Background color for these modules */
+  color: #f2e5bc; /* Foreground color */
+  background-color: #282828; /* Background color for these modules */
   border-radius: 10px;
   margin-top: 4px;
   margin-left: 4px;
@@ -79,13 +76,13 @@ tooltip label {
 /* Styling for clock and updates modules */
 #clock,
 #custom-updates {
-  margin-right:5px;
+  margin-right:4px;
 }
 
 
 #workspaces{
   padding-top:2px;
-  margin-left:5px;
+  margin-left:4px;
   padding-left:8px;
   padding-right:8px
 }
@@ -96,15 +93,58 @@ tooltip label {
 }
 /* Workspace buttons */
 #workspaces button {
-  color: #E5E9F0; /* Foreground color */
-  background-color: #2E3440; /* Background color for workspaces */
+  color: #f2e5bc; /* Foreground color */
+  background-color: #282828; /* Background color for workspaces */
   padding-left:4px;
   padding-right:4px;
 }
 
 
 #workspaces button.active {
-  color: #E5E9F0; /* Foreground color */
+  color: #f2e5bc; /* Foreground color */
   padding-left:4px;
   padding-right:4px;
+}
+
+#battery.warning {
+  color: #fe8019;
+}
+
+#battery.critical {
+  color: #fb4934;
+}
+
+/* Left group pill */
+#network {
+  border-radius: 10px 0 0 10px;
+  border-right: 1px solid #3c3836;
+}
+#backlight {
+  border-radius: 0;
+  margin-left: 0;
+  border-right: 1px solid #3c3836;
+}
+#pulseaudio {
+  border-radius: 0 10px 10px 0;
+  margin-left: 0;
+}
+
+/* Right group pill */
+#memory {
+  border-radius: 10px 0 0 10px;
+  border-right: 1px solid #3c3836;
+}
+#cpu {
+  border-radius: 0;
+  margin-left: 0;
+  border-right: 1px solid #3c3836;
+}
+#battery {
+  border-radius: 0;
+  margin-left: 0;
+  border-right: 1px solid #3c3836;
+}
+#clock {
+  border-radius: 0 10px 10px 0;
+  margin-left: 0;
 }

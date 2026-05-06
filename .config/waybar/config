@@ -4,15 +4,17 @@
   "margin-bottom": 0,
 
   "modules-left": [
-    "hyprland/workspaces"
-  ],
-  "modules-center": [],
-  "modules-right": [
-    "memory",
-    "cpu",
     "network",
     "backlight",
     "pulseaudio",
+ 
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+    ],
+  "modules-right": [
+    "memory",
+    "cpu",
     "battery",
     "clock"
   ],
@@ -25,11 +27,11 @@
   "hyprland/window": {
     "format": "{}",
     "rewrite": {
-      "(\\d\\. )?(.*) - Chromium": "<span font='JetBrainsMono Nerd Font' color='#4285F4'>󰈹</span>  $2 ",
-      "nvim (.*)": "<span font='JetBrainsMono Nerd Font' color='#57A143'>󰘧</span>  $1",
-      "nvim": "<span font='JetBrainsMono Nerd Font' color='#57A143'>󰘧  Neovim</span> ",
-      "ranger(.*)": "<span font='JetBrainsMono Nerd Font' color='#ffffff'>󰤆</span>  $1",
-      "Search(.*)": "<span font='JetBrainsMono Nerd Font' color='#a855f7'>󰍉</span>  Search$1"
+      "(\\d\\. )?(.*) - Chromium": "<span font='JetBrainsMono Nerd Font' color='#83a598'>󰈹</span>  $2 ",
+      "nvim (.*)": "<span font='JetBrainsMono Nerd Font' color='#b8bb26'>󰘧</span>  $1",
+      "nvim": "<span font='JetBrainsMono Nerd Font' color='#b8bb26'>󰘧  Neovim</span> ",
+      "ranger(.*)": "<span font='JetBrainsMono Nerd Font' color='#ebdbb2'>󰤆</span>  $1",
+      "Search(.*)": "<span font='JetBrainsMono Nerd Font' color='#d3869b'>󰍉</span>  Search$1"
     },
     "separate-outputs": false
   },
@@ -70,8 +72,8 @@
       // "interface": "wlan0", // (Optional) Force a specific interface
       "interval": 2, // Update every 2 seconds for real-time bandwidth info
       "format-wifi": "{icon} {essid}",
-      "format-ethernet": "󰈁  {ifname}",
-      "format-disconnected": "󰈂  Disconnected",
+      "format-ethernet": "󰈁 {ifname}",
+      "format-disconnected": "󰈂 Disconnected",
       "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"], // Signal strength icons (0% to 100%)
       
       // Detailed Tooltip
@@ -113,7 +115,7 @@
   },
 
   "memory": {
-    "format": "<span font='JetBrainsMono Nerd Font 13'>󰘚</span> {used:0.1f}GB / {total:0.1f}GB",
+    "format": "<span font='JetBrainsMono Nerd Font 13'>󰘚</span> {used:0.1f}G",
     "tooltip": false
   },
 
@@ -125,9 +127,9 @@
   "pulseaudio": {
       "scroll-step": 5, // 1% is too slow; 5% is standard
       "format": "{icon} {volume}%",
-      "format-bluetooth": "{icon}  {volume}%",
-      "format-bluetooth-muted": " ",
-      "format-muted": "", // Clean muted icon (no percentage needed)
+      "format-bluetooth": "{icon}  {volume}%",
+      "format-bluetooth-muted": "  Muted",
+      "format-muted": "  Muted", // Clean muted icon (no percentage needed)
       "format-source": "{volume}% ",
       "format-source-muted": "",
       
@@ -149,10 +151,10 @@
   },
 
   "clock": {
-    "format": "{:%d %B %H:%M}",
+    "format": "{:%b %d  %H:%M}",
     "interval": 60,
     "tooltip": false,
-    "tooltip-format": "{:%d %B %H:%M}"
+    "tooltip-format": "{:%b %d  %H:%M}"
   },
 
   "backlight": {
@@ -161,4 +163,3 @@
     "device": "intel_backlight"
   }
 }
-
