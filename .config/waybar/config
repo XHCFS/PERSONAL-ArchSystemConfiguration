@@ -48,9 +48,6 @@
       // "Format-icons" uses the full 10-step range for smoother updates
       "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
       
-      // shows the time remaining when you click on the module
-      "format-alt": "{time} {icon}",
-      
       // "Format-charging" shows a distinct lightning bolt + percent
       "format-charging": "󰂄 {capacity}%",
       
@@ -88,6 +85,8 @@
 
   "hyprland/workspaces": {
     "format": "{icon}",
+    "tooltip": false,
+    "on-click": "",
     "format-icons": {
       "1": "",
       "2": "",
@@ -102,8 +101,6 @@
       "-99": "",
       "active": "",
       "default": "",
-      "tooltip": false,
-      "on-click": ""
     }
   },
 
@@ -153,13 +150,12 @@
   "clock": {
     "format": "{:%b %d  %H:%M}",
     "interval": 60,
-    "tooltip": false,
     "tooltip-format": "{:%b %d  %H:%M}"
   },
 
   "backlight": {
     "format": "<span font='JetBrainsMono Nerd Font'>󰃟</span> {percent}%",
-    "tooltip": false,
-    "device": "intel_backlight"
+    "device": "intel_backlight",
+    "tooltip": false
   }
 }
