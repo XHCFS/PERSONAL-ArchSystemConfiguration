@@ -3,5 +3,5 @@ hyprpaper &
 waybar &
 hypridle &
 gammastep -c ~/.config/gammastep/gammastep.conf -v &
-copyq --start-server &
+QT_QPA_PLATFORM=xcb copyq &
 fcitx5 &
