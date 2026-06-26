@@ -123,13 +123,13 @@ bindkey -s '^o' 'lfcd\n'
 # ==========================================
 # 6. SEARCH & NAVIGATION
 # ==========================================
-# FZF Nord Theme
+# FZF Gruvbox Theme
 export FZF_DEFAULT_OPTS='
     --height 40% --layout=reverse --border
-    --color=fg:#e5e9f0,bg:#2E3440,hl:#81a1c1
-    --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1
-    --color=info:#eacb8a,prompt:#bf6069,pointer:#A3BE8C
-    --color=marker:#a3be8b,spinner:#b48dac,header:#A3BE8C'
+    --color=fg:#ebdbb2,bg:#282828,hl:#83a598
+    --color=fg+:#ebdbb2,bg+:#3c3836,hl+:#8ec07c
+    --color=info:#fabd2f,prompt:#fb4934,pointer:#b8bb26
+    --color=marker:#b8bb26,spinner:#d3869b,header:#b8bb26'
 
 # Substring Search (Arrow Keys)
 source /home/saif/.zsh/zsh-history-substring-search.zsh
