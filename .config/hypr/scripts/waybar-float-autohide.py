@@ -120,11 +120,15 @@ def toggle():
     set_shown(want)
 
 
-def auto():
+def clear_override():
     try:
         os.remove(OVERRIDE)
     except FileNotFoundError:
         pass
+
+
+def auto():
+    clear_override()
     sync()
 
 
@@ -140,6 +144,7 @@ def single_instance():
 
 def run():
     _lock = single_instance()
+    clear_override()  # a pin from a previous session shouldn't outlive it
     sig = os.environ.get("HYPRLAND_INSTANCE_SIGNATURE")
     if not sig:
         sys.exit("HYPRLAND_INSTANCE_SIGNATURE not set")

@@ -170,17 +170,23 @@ hl.curve("almostLinear",   { type = "bezier", points = { { 0.5, 0.5 },   { 0.75,
 hl.curve("quick",          { type = "bezier", points = { { 0.15, 0 },    { 0.1, 1 }    } })
 
 -- --- Slightly faster animations (~20%) ---
+
+-- Waybar maps/unmaps like a window does, so it moves on exactly the window
+-- timings. Change these two and windows and layers stay in step.
+local inSpeed,  inCurve  = 1.6,  "easeOutQuint"
+local outSpeed, outCurve = 0.55, "linear"
+
 hl.animation({ leaf = "global",        enabled = true, speed = 4,    bezier = "default" })
 hl.animation({ leaf = "border",        enabled = true, speed = 2.2,  bezier = "easeOutQuint" })
 hl.animation({ leaf = "windows",       enabled = true, speed = 2,    bezier = "easeOutQuint" })
-hl.animation({ leaf = "windowsIn",     enabled = true, speed = 1.6,  bezier = "easeOutQuint", style = "popin 87%" })
-hl.animation({ leaf = "windowsOut",    enabled = true, speed = 0.55, bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "windowsIn",     enabled = true, speed = inSpeed,  bezier = inCurve,  style = "popin 87%" })
+hl.animation({ leaf = "windowsOut",    enabled = true, speed = outSpeed, bezier = outCurve, style = "popin 87%" })
 hl.animation({ leaf = "fadeIn",        enabled = true, speed = 0.7,  bezier = "almostLinear" })
 hl.animation({ leaf = "fadeOut",       enabled = true, speed = 0.55, bezier = "almostLinear" })
 hl.animation({ leaf = "fade",          enabled = true, speed = 1.2,  bezier = "quick" })
 hl.animation({ leaf = "layers",        enabled = true, speed = 1.5,  bezier = "easeOutQuint" })
-hl.animation({ leaf = "layersIn",      enabled = true, speed = 2.4,  bezier = "easeOutQuint",   style = "fade" })
-hl.animation({ leaf = "layersOut",     enabled = true, speed = 1.8,  bezier = "easeInOutCubic", style = "fade" })
+hl.animation({ leaf = "layersIn",      enabled = true, speed = inSpeed,  bezier = inCurve,  style = "fade" })
+hl.animation({ leaf = "layersOut",     enabled = true, speed = outSpeed, bezier = outCurve, style = "fade" })
 hl.animation({ leaf = "fadeLayersIn",  enabled = true, speed = 0.7,  bezier = "almostLinear" })
 hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 0.55, bezier = "almostLinear" })
 hl.animation({ leaf = "workspaces",    enabled = true, speed = 0.8,  bezier = "almostLinear", style = "fade" })
