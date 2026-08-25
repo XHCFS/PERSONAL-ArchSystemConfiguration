@@ -179,13 +179,21 @@ hl.animation({ leaf = "fadeIn",        enabled = true, speed = 0.7,  bezier = "a
 hl.animation({ leaf = "fadeOut",       enabled = true, speed = 0.55, bezier = "almostLinear" })
 hl.animation({ leaf = "fade",          enabled = true, speed = 1.2,  bezier = "quick" })
 hl.animation({ leaf = "layers",        enabled = true, speed = 1.5,  bezier = "easeOutQuint" })
-hl.animation({ leaf = "layersIn",      enabled = true, speed = 1.6,  bezier = "easeOutQuint", style = "fade" })
-hl.animation({ leaf = "layersOut",     enabled = true, speed = 0.6,  bezier = "linear",       style = "fade" })
+hl.animation({ leaf = "layersIn",      enabled = true, speed = 2.4,  bezier = "easeOutQuint",   style = "fade" })
+hl.animation({ leaf = "layersOut",     enabled = true, speed = 1.8,  bezier = "easeInOutCubic", style = "fade" })
 hl.animation({ leaf = "fadeLayersIn",  enabled = true, speed = 0.7,  bezier = "almostLinear" })
 hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 0.55, bezier = "almostLinear" })
 hl.animation({ leaf = "workspaces",    enabled = true, speed = 0.8,  bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesIn",  enabled = true, speed = 0.45, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 0.8,  bezier = "almostLinear", style = "fade" })
+
+-- Waybar is stopped/started by scripts/waybar-float-autohide.py; the slide style
+-- turns that into a slide up / slide down instead of a fade in place.
+hl.layer_rule({
+    name      = "waybar-slide",
+    match     = { namespace = "waybar" },
+    animation = "slide",
+})
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
@@ -324,6 +332,9 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
+-- Fraction of the monitor a window gets when toggled to floating (SUPER + F)
+local floatWidth, floatHeight = 0.55, 0.6
+
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/screenshot_slurp.sh - | wl-copy"))
 hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd([[grim "/media/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png"]]))
 
@@ -335,7 +346,23 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(home .. "/bin/search"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("pavucontrol"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F", function()
+    hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+    local w = hl.get_active_window()
+    local m = hl.get_active_monitor()
+    if w and m and w.floating then
+        hl.dispatch(hl.dsp.window.resize({
+            x = math.floor(m.width  * floatWidth),
+            y = math.floor(m.height * floatHeight),
+        }))
+        hl.dispatch(hl.dsp.window.center())
+    end
+end)
+-- Waybar: SUPER+B pins it hidden/shown by hand, SUPER+SHIFT+B hands it back
+-- to scripts/waybar-float-autohide.py (hidden whenever a window is floating).
+hl.bind(mainMod .. " + B",         hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/waybar-float-autohide.py toggle"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/waybar-float-autohide.py auto"))
+
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())            -- dwindle
 hl.bind(mainMod .. " + R", hl.dsp.layout("togglesplit"))      -- dwindle
