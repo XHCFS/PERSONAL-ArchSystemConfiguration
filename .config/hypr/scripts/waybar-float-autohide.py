@@ -22,15 +22,17 @@ import signal
 import socket
 import subprocess
 import sys
+import time
 
 # "restart" gives the animated slide; "signal" hides instantly via SIGUSR1 and
 # leaves Waybar running.
 MODE = "restart"
 
-# Collapse a burst of events into one restart. Dragging a window between
-# workspaces or toggling float twice in a row fires several events; without
-# this the bar would flicker through a restart for each one.
-DEBOUNCE = 0.15
+# Leading-edge debounce: act on the first event immediately so the bar starts
+# moving in the same frame as the windows do, then hold off for this long. A
+# burst (dragging between workspaces, toggling float twice) still costs one
+# restart, but nothing is ever delayed by waiting for the burst to end.
+COOLDOWN = 0.25
 
 RUNTIME = os.environ.get("XDG_RUNTIME_DIR", "/tmp")
 
@@ -53,19 +55,30 @@ EVENTS = {
 }
 
 
-def hyprctl(*args):
+def hyprctl(*queries):
+    """Run several hyprctl queries in one round trip and parse each reply."""
     out = subprocess.run(
-        ["hyprctl", "-j", *args], capture_output=True, text=True, check=True
+        ["hyprctl", "--batch", ";".join(f"j/{q}" for q in queries)],
+        capture_output=True,
+        text=True,
+        check=True,
     ).stdout
-    return json.loads(out)
+    decoder, docs, i = json.JSONDecoder(), [], 0
+    for _ in queries:
+        while i < len(out) and out[i] not in "[{":
+            i += 1
+        doc, i = decoder.raw_decode(out, i)
+        docs.append(doc)
+    return docs
 
 
 def floating_visible():
     """Is a floating window on screen anywhere right now?"""
-    visible = {m["activeWorkspace"]["id"] for m in hyprctl("monitors")}
+    monitors, clients = hyprctl("monitors", "clients")
+    visible = {m["activeWorkspace"]["id"] for m in monitors}
     return any(
         c["floating"] and not c.get("hidden") and c["workspace"]["id"] in visible
-        for c in hyprctl("clients")
+        for c in clients
     )
 
 
@@ -79,7 +92,7 @@ def waybar_shown():
         return bool(waybar_pids())
     # In signal mode Waybar keeps running but drops its exclusive zone, so ask
     # Hyprland what the bar is actually reserving.
-    return any(any(m["reserved"]) for m in hyprctl("monitors"))
+    return any(any(m["reserved"]) for m in hyprctl("monitors")[0])
 
 
 def set_shown(shown):
@@ -154,15 +167,24 @@ def run():
 
     buf = b""
     pending = False
+    ready_at = 0.0
+
+    def act():
+        nonlocal pending, ready_at
+        pending = False
+        ready_at = time.monotonic() + COOLDOWN
+        try:
+            sync()
+        except Exception as e:  # never die on a transient hyprctl failure
+            print(f"waybar-float-autohide: {e}", file=sys.stderr)
+
     while True:
-        # Once something interesting lands, wait for the socket to go quiet for
-        # DEBOUNCE seconds before touching the bar.
-        if not select.select([sock], [], [], DEBOUNCE if pending else None)[0]:
-            pending = False
-            try:
-                sync()
-            except Exception as e:  # never die on a transient hyprctl failure
-                print(f"waybar-float-autohide: {e}", file=sys.stderr)
+        now = time.monotonic()
+        if pending and now >= ready_at:
+            act()
+            continue
+        timeout = ready_at - now if pending else None
+        if not select.select([sock], [], [], timeout)[0]:
             continue
 
         chunk = sock.recv(4096)
@@ -170,10 +192,10 @@ def run():
             return
         buf += chunk
         *lines, buf = buf.split(b"\n")
-        for line in lines:
-            if line.decode("utf-8", "replace").split(">>", 1)[0] in EVENTS:
-                pending = True
-
+        if any(l.decode("utf-8", "replace").split(">>", 1)[0] in EVENTS for l in lines):
+            pending = True
+            if time.monotonic() >= ready_at:
+                act()
 
 if __name__ == "__main__":
     action = sys.argv[1] if len(sys.argv) > 1 else None
