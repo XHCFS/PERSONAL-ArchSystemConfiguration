@@ -173,8 +173,8 @@ hl.curve("quick",          { type = "bezier", points = { { 0.15, 0 },    { 0.1, 
 
 -- Hiding Waybar releases its exclusive zone, so the bar and the windows that
 -- reflow into the freed space animate together. Both run off these values --
--- `windows` is the leaf that drives window movement -- so they start at the
--- same moment and travel at the same rate.
+-- `windows` is the leaf that drives window movement -- so they travel at the
+-- same rate.
 local moveSpeed, moveCurve = 2, "easeOutQuint"
 
 hl.animation({ leaf = "global",        enabled = true, speed = 4,    bezier = "default" })
@@ -194,8 +194,8 @@ hl.animation({ leaf = "workspaces",    enabled = true, speed = 0.8,  bezier = "a
 hl.animation({ leaf = "workspacesIn",  enabled = true, speed = 0.45, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 0.8,  bezier = "almostLinear", style = "fade" })
 
--- Waybar is stopped/started by scripts/waybar-float-autohide.py; the slide style
--- turns that into a slide up / slide down instead of a fade in place.
+-- SUPER+B stops/starts Waybar (scripts/waybar-toggle.py); the slide style turns
+-- that into a slide up / slide down instead of a fade in place.
 hl.layer_rule({
     name      = "waybar-slide",
     match     = { namespace = "waybar" },
@@ -365,10 +365,8 @@ hl.bind(mainMod .. " + F", function()
         hl.dispatch(hl.dsp.window.center())
     end
 end)
--- Waybar: SUPER+B pins it hidden/shown by hand, SUPER+SHIFT+B hands it back
--- to scripts/waybar-float-autohide.py (hidden whenever a window is floating).
-hl.bind(mainMod .. " + B",         hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/waybar-float-autohide.py toggle"))
-hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/waybar-float-autohide.py auto"))
+-- Slide Waybar out of view / back in.
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(home .. "/.config/hypr/scripts/waybar-toggle.py"))
 
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())            -- dwindle
