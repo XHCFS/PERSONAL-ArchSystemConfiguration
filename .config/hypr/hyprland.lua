@@ -459,10 +459,11 @@ hl.window_rule({
     center = true,
 })
 
--- Rule for the specific CopyQ window (exact class: 'com.github.hluk.copyq')
+-- CopyQ reports "copyq" under XWayland and "com.github.hluk.copyq" natively,
+-- so match both -- it now runs natively (see autostart.sh).
 hl.window_rule({
     name  = "windowrule-2",
-    match = { class = "copyq" },
+    match = { class = "^(com\\.github\\.hluk\\.)?copyq$" },
 
     float  = true,
     size   = { 400, 900 },
